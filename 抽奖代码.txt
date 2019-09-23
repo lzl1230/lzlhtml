@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    #list {
+        height: 500px;
+        width: 500px;
+        display: block;
+        /*background-color: red;*/
+        margin: 50px auto;
+    }
+
+     li {
+        width: 150px;
+        height: 150px;
+        background-color: whitesmoke;
+        list-style: none;
+        float: left;
+        margin: 8px;
+        text-align: center;
+        line-height: 150px;
+        font-size: 20px;
+    }
+
+    .light {
+        width: 150px;
+        height: 150px;
+        background-color: red;
+        color: red;
+    }
+</style>
+<body>
+<ul id="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>
+        <input type="button" value="开始" id="start">
+        <input type="button" value="停止" id="stop">
+        <!--        <button id="start">开始</button>-->
+        <!--        <button id="stop">停止</button>-->
+    </li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+</ul>
+<script>
+    var start = document.getElementById("start");
+    var stop = document.getElementById("stop");
+    var lists = [0, 1, 2, 3, 5, 6, 7, 8];
+    var lies = document.getElementsByTagName("li");
+    var num = 0;
+    start.onclick = function () {
+        start.disabled = true;
+        timeId = setInterval(function () {
+            lies[lists[num]].className = "";
+           num = parseInt(Math.random() * 8);
+            if (num > 7) {
+                num = 0;
+            }
+            lies[lists[num]].className = "light";
+            console.log(num)
+        }, 100);
+    };
+    stop.onclick = function () {
+        start.disabled = false;
+        clearInterval(timeId);
+    };
+</script>
+</body>
+</html>
